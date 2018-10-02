@@ -11,13 +11,11 @@ import java.util.List;
 
 public class GenerarHTML {
 
-    private static String ruta = "./camaras.xml";
-
     private static Document leerXML() {
         SAXBuilder saxBuilder = new SAXBuilder();
         Document document = null;
         try {
-            document = saxBuilder.build(new File(ruta));
+            document = saxBuilder.build(new File("./camaras.xml"));
             parsearXML(document);
         } catch (JDOMException | IOException e) {
             e.printStackTrace();
@@ -84,9 +82,8 @@ public class GenerarHTML {
     }
 
     private static void generarFichero(String html_pagina) {
-        String nombre_fichero = "./camaras.html";
         try {
-            FileWriter fw = new FileWriter(nombre_fichero, false);
+            FileWriter fw = new FileWriter("./camaras.html", false);
             fw.write(html_pagina);
             fw.close();
         } catch (IOException e) {
