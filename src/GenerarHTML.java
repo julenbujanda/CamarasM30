@@ -46,10 +46,9 @@ public class GenerarHTML {
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
                 "    <style>\n" +
-                "        /* Set the size of the div element that contains the map */\n" +
                 "        .map {\n" +
-                "            height: 187.5px; /* The height is 400 pixels */\n" +
-                "            width: 250px; /* The width is the width of the web page */\n" +
+                "            height: 187.5px;\n" +
+                "            width: 250px;\n" +
                 "        }\n" +
                 "body {\n" +
                 "    font-family: \"Verdana\", Times, sans-serif;\n" +
@@ -60,25 +59,24 @@ public class GenerarHTML {
                 "    </style>\n" +
                 "</head>\n" +
                 "<table align='center'>\n" +
-                "<tr><thead><td>Cámara</td><td>Localización</td></thead><tbody></tr>";
+                "<thead><tr><td>Cámara</td><td>Localización</td></tr></thead><tbody><tr>";
         int i = 0;
-        String initMap = "function initMap() {";
+        String initMap = "function initMap() {\n";
         for (Camara camara : camaras) {
             // language=HTML
             html += "<tr><td><img src=\"http://" + camara.getImagen() + "\" height=\"187.5\" width=\"250\"></td>" +
                     "<td><div id=\"map" + i + "\" class=\"map\"></div>\n</td></tr>";
             initMap += "var location" + i + " = {lat: " + camara.getLatitud() + ", lng: " + camara.getLongitud() + "};\n" +
                     "var map" + i + " = new google.maps.Map(\n" +
-                    "document.getElementById('map" + i + "'), {zoom: 4, center: location" + i + ", zoom: 13});\n" +
-                    "var marker" + i + " = new google.maps.Marker({position: location" + i + ", map: map" + i + "});";
+                    "document.getElementById('map" + i + "'), {center: location" + i + ", zoom: 13});\n" +
+                    "var marker" + i + " = new google.maps.Marker({position: location" + i + ", map: map" + i + "});\n";
             i++;
         }
         initMap += "}";
         // language=HTML
         html += "</tbody></table>\n" +
-                "<script>" + initMap + "</script>" +
-                "<script async defer\n" +
-                "        src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDuX6StS8fbUJnw904k5EWD_PTeBnFw-d4&callback=initMap\">\n" +
+                "<script>" + initMap + "</script>\n" +
+                "<script async defer src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDuX6StS8fbUJnw904k5EWD_PTeBnFw-d4&callback=initMap\">\n" +
                 "</script>\n" +
                 "</body>\n" +
                 "</html>\n";
