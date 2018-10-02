@@ -28,9 +28,9 @@ public class GenerarHTML {
         List<Element> camarasXML = element.getChildren("Camara");
         LinkedList<Camara> camaras = new LinkedList<>();
         for (Element camara : camarasXML) {
-            List<Element> posicion = camara.getChildren("Posicion");
-            String latitud = posicion.get(0).getChild("Latitud").getText();
-            String longitud = posicion.get(0).getChild("Longitud").getText();
+            Element posicion = camara.getChild("Posicion");
+            String latitud = posicion.getChild("Latitud").getText();
+            String longitud = posicion.getChild("Longitud").getText();
             String url = camara.getChild("URL").getText();
             camaras.add(new Camara(latitud, longitud, url));
         }
