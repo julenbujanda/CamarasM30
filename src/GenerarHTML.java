@@ -4,8 +4,12 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +18,14 @@ public class GenerarHTML {
     private static Document leerXML() {
         SAXBuilder saxBuilder = new SAXBuilder();
         Document document = null;
+        try {
+            URL url = new URL("http://www.mc30.es/components/com_hotspots/datos/camaras.xml");
+            ReadableByteChannel readableByteChannel = Channels.newChannel(url.openStream());
+            FileOutputStream fileOutputStream = new FileOutputStream("./camaras.xml");
+            fileOutputStream.getChannel().transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
+        } catch (Exception e) {
+            System.out.println("No se ha podido descargar el archivo.");
+        }
         try {
             document = saxBuilder.build(new File("./camaras.xml"));
             parsearXML(document);
