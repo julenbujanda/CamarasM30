@@ -52,7 +52,6 @@ public class GenerarHTML {
     private static String generarHTML(LinkedList<Camara> camaras) {
         // language=HTML
         String html = "<html>\n" +
-                "<body>\n" +
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
                 "    <style>\n" +
@@ -68,6 +67,7 @@ public class GenerarHTML {
                 "}" +
                 "    </style>\n" +
                 "</head>\n" +
+                "<body>\n" +
                 "<table align='center'>\n" +
                 "<thead><tr><td>Cámara</td><td>Localización</td></tr></thead><tbody><tr>";
         int i = 0;
