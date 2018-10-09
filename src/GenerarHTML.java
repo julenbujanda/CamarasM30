@@ -53,6 +53,7 @@ public class GenerarHTML {
         // language=HTML
         String html = "<html>\n" +
                 "<head>\n" +
+                "<title>Cámaras M30</title>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
                 "    <style>\n" +
                 "        .map {\n" +
@@ -69,13 +70,13 @@ public class GenerarHTML {
                 "</head>\n" +
                 "<body>\n" +
                 "<table align='center'>\n" +
-                "<thead><tr><td>Cámara</td><td>Localización</td></tr></thead><tbody><tr>";
+                "<thead>\n<tr><td>Cámara</td><td>Localización</td></tr>\n</thead>\n<tbody>\n";
         int i = 0;
         String initMap = "function initMap() {\n";
         for (Camara camara : camaras) {
             // language=HTML
             html += "<tr><td><img src=\"http://" + camara.getImagen() + "\" height=\"187.5\" width=\"250\"></td>" +
-                    "<td><div id=\"map" + i + "\" class=\"map\"></div>\n</td></tr>";
+                    "<td><div id=\"map" + i + "\" class=\"map\"></div></td></tr>\n";
             initMap += "var location" + i + " = {lat: " + camara.getLatitud() + ", lng: " + camara.getLongitud() + "};\n" +
                     "var map" + i + " = new google.maps.Map(\n" +
                     "document.getElementById('map" + i + "'), {center: location" + i + ", zoom: 13});\n" +
